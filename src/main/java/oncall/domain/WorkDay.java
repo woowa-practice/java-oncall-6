@@ -12,23 +12,23 @@ public class WorkDay {
         this.yoil = yoil;
     }
 
-    public void setNickname(String nickname){
-        this.nickname=nickname;
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
-    public String getNickname(){
+    public String getNickname() {
         return nickname;
     }
 
-    public int getMonth(){
+    public int getMonth() {
         return month;
     }
 
-    public int getDay(){
+    public int getDay() {
         return day;
     }
 
-    public Yoil getYoil(){
+    public Yoil getYoil() {
         return yoil;
     }
 

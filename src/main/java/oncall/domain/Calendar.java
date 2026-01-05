@@ -7,24 +7,24 @@ import java.util.List;
 public class Calendar {
     private final List<WorkDay> calendar;
 
-    public Calendar(int startMonth, String startYoil){
-        this.calendar=new ArrayList<>();
+    public Calendar(int startMonth, String startYoil) {
+        this.calendar = new ArrayList<>();
         generateCalendar(startMonth, startYoil);
     }
 
-    private void generateCalendar(int startMonth, String startYoil){
-        Month month=Month.from(startMonth);
-        Yoil yoil=Yoil.from(startYoil);
+    private void generateCalendar(int startMonth, String startYoil) {
+        Month month = Month.from(startMonth);
+        Yoil yoil = Yoil.from(startYoil);
 
-        for(int i=0; i<month.getMaxDays(); i++){
-            WorkDay workDay=new WorkDay(startMonth, i+1, yoil);
+        for (int i = 0; i < month.getMaxDays(); i++) {
+            WorkDay workDay = new WorkDay(startMonth, i + 1, yoil);
             calendar.add(workDay);
 
-            yoil=yoil.next();
+            yoil = yoil.next();
         }
     }
 
-    public List<WorkDay> getCalendar(){
+    public List<WorkDay> getCalendar() {
         return Collections.unmodifiableList(calendar);
     }
 }
