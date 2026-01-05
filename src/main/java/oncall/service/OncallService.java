@@ -8,10 +8,11 @@ import java.util.Objects;
 
 public class OncallService {
 
-    public WorkTurn oncall(int startMonth, String startYoil, Weekday weekday, DayOff dayOff){
+    public WorkTurn oncall(int startMonth, String startYoil, Yoil yoil, Weekday weekday, DayOff dayOff){
         List<Integer> targetMonth=loadMonth(startMonth);
-        List<String> yoils=new Yoil(new ArrayList<>(List.of("월", "화", "수", "목", "금", "토", "일"))).getYoil();
-        WorkTurn workTurn=new WorkTurn();
+//        List<String> yoils=new Yoil(new ArrayList<>(List.of("월", "화", "수", "목", "금", "토", "일"))).getYoil();
+        List<String> yoils=yoil.getYoil();
+        WorkTurn workTurn=new WorkTurn(startMonth, startYoil);
 
         int yoilIdx= yoils.indexOf(startYoil);
         int weekdayIdx=0, dayoffIdx=0;
