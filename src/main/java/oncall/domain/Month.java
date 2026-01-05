@@ -37,7 +37,7 @@ public enum Month {
         return monthName;
     }
 
-    public int getMaxDays(){
+    public int getMaxDays() {
         return maxDays;
     }
 }
