@@ -21,7 +21,6 @@ public class 월일테스트 {
         List<Integer> thisMonth = Month.valueOf(month).getDays();
         Yoil yoil=new Yoil(new ArrayList<>(List.of("월", "화", "수", "목", "금", "토", "일")));
         List<String> yoils=yoil.getYoil();
-//        List<String> thisDay = new ArrayList<>(List.of("월", "화", "수", "목", "금", "토", "일"));
         int idx = yoils.indexOf(day);
         int weekidx=0;
         int offidx=0;
@@ -43,9 +42,6 @@ public class 월일테스트 {
             if (idx == 6) idx = 0;
             if(offidx==off.size()) offidx=0;
             if(weekidx==week.size()) weekidx=0;
-
-//            System.out.println(month + "월 " + integer + "일 " + thisDay.get(idx));
-
         }
     }
 }

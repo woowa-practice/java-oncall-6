@@ -12,4 +12,8 @@ public class Weekday {
     public List<String> getWeekdayList() {
         return weekdayList;
     }
+
+    public String getOneWeekday(int i){
+        return weekdayList.get(i);
+    }
 }

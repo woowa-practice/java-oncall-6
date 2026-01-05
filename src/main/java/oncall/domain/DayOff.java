@@ -12,4 +12,8 @@ public class DayOff {
     public List<String> getDayoffList() {
         return dayoffList;
     }
+
+    public String getOneDayOff(int i){
+        return dayoffList.get(i);
+    }
 }
