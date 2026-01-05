@@ -13,7 +13,7 @@ public class Weekday {
         return weekdayList;
     }
 
-    public String getOneWeekday(int i){
+    public String getOneWeekday(int i) {
         return weekdayList.get(i);
     }
 }

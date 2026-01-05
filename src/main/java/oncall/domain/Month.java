@@ -26,9 +26,9 @@ public enum Month {
         this.days = days;
     }
 
-    public static Month valueOf(int name){
+    public static Month valueOf(int name) {
         return Arrays.stream(values())
-                .filter(month -> month.monthName==name)
+                .filter(month -> month.monthName == name)
                 .findFirst()
                 .orElseThrow();
     }

@@ -6,8 +6,8 @@ import java.util.List;
 public class Yoil {
     private List<String> yoil;
 
-    public Yoil(List<String> yoil){
-        this.yoil=yoil;
+    public Yoil(List<String> yoil) {
+        this.yoil = yoil;
     }
 
     public List<String> getYoil() {

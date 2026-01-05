@@ -10,34 +10,34 @@ public class WorkTurn {
     private final List<String> weekdayTurn;
     private final List<String> dayOffTurn;
 
-    public WorkTurn(int startMonth, String startYoil){
-        this.startMonth=startMonth;
-        this.startYoil=startYoil;
-        this.weekdayTurn=new ArrayList<>();
-        this.dayOffTurn=new ArrayList<>();
+    public WorkTurn(int startMonth, String startYoil) {
+        this.startMonth = startMonth;
+        this.startYoil = startYoil;
+        this.weekdayTurn = new ArrayList<>();
+        this.dayOffTurn = new ArrayList<>();
     }
 
-    public void addWeekDay(String name){
+    public void addWeekDay(String name) {
         weekdayTurn.add(name);
     }
 
-    public void addDayOff(String name){
+    public void addDayOff(String name) {
         dayOffTurn.add(name);
     }
 
-    public int getStartMonth(){
+    public int getStartMonth() {
         return startMonth;
     }
 
-    public String getStartYoil(){
+    public String getStartYoil() {
         return startYoil;
     }
 
-    public List<String> getWeekdayTurn(){
+    public List<String> getWeekdayTurn() {
         return Collections.unmodifiableList(weekdayTurn);
     }
 
-    public List<String> getDayOffTurn(){
+    public List<String> getDayOffTurn() {
         return Collections.unmodifiableList(dayOffTurn);
     }
 }
