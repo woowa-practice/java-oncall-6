@@ -17,10 +17,10 @@ public class Calendar {
         Yoil yoil=Yoil.from(startYoil);
 
         for(int i=0; i<month.getMaxDays(); i++){
-            WorkDay workDay=new WorkDay(startMonth, i+1, yoil.getYoilName());
+            WorkDay workDay=new WorkDay(startMonth, i+1, yoil);
             calendar.add(workDay);
 
-            yoil.next();
+            yoil=yoil.next();
         }
     }
 

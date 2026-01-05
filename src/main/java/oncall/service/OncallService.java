@@ -1,43 +1,41 @@
 package oncall.service;
 
-import oncall.domain.*;
+import oncall.domain.Calendar;
+import oncall.domain.WorkDay;
+import oncall.domain.Worker;
 
 import java.util.List;
-import java.util.Objects;
 
 public class OncallService {
 
-    public WorkTurn oncall(int startMonth, String startYoil, Yoil yoil, Weekday weekday, DayOff dayOff) {
-        List<Integer> targetMonth = loadMonth(startMonth);
-        List<String> yoils = yoil.getYoil();
-        WorkTurn workTurn = new WorkTurn(startMonth, startYoil);
+    public List<WorkDay> assign(int month, String yoil, Worker weekdayWorker, Worker dayoffWorker){
 
-        int yoilIdx = yoils.indexOf(startYoil);
-        int weekdayIdx = 0, dayoffIdx = 0;
+        Calendar calendar=new Calendar(month, yoil);
+        String previousWorker="";
+        String todayWorker="";
 
-        for (Integer day : targetMonth) {
-            if (Objects.equals(yoils.get(yoilIdx), "토") || Objects.equals(yoils.get(yoilIdx), "일")) {
-                workTurn.addDayOff(dayOff.getOneDayOff(dayoffIdx));
-                dayoffIdx++;
-                yoilIdx++;
-                if (yoilIdx > yoils.size() - 1) yoilIdx = 0;
-                if (dayoffIdx == dayOff.getDayoffList().size()) dayoffIdx = 0;
+        List<WorkDay> workDays=calendar.getCalendar();
+
+        for (WorkDay workDay : workDays) {
+            if(workDay.isHoliday()){
+                todayWorker=work(dayoffWorker, previousWorker);
+                workDay.setNickname(todayWorker);
+                previousWorker=todayWorker;
                 continue;
             }
-
-            workTurn.addWeekDay(weekday.getOneWeekday(weekdayIdx));
-            weekdayIdx++;
-            yoilIdx++;
-
-            if (yoilIdx > yoils.size() - 1) yoilIdx = 0;
-            if (dayoffIdx == dayOff.getDayoffList().size()) dayoffIdx = 0;
-            if (weekdayIdx == weekday.getWeekdayList().size()) weekdayIdx = 0;
+            todayWorker=work(weekdayWorker, previousWorker);
+            workDay.setNickname(todayWorker);
+            previousWorker=todayWorker;
         }
 
-        return workTurn;
+        return workDays;
     }
 
-    private List<Integer> loadMonth(int month) {
-        return Month.valueOf(month).getDays();
+    private String work(Worker worker, String previousWorker){
+        if(worker.checkNext().equals(previousWorker)){
+            worker.swap();
+        }
+        String todayWorker=worker.getNextAndMove();
+        return todayWorker;
     }
 }

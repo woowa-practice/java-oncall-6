@@ -1,7 +1,7 @@
 package oncall;
 
-import oncall.domain.DayOff;
-import oncall.domain.Weekday;
+import oncall.domain.WorkDay;
+import oncall.domain.Worker;
 import oncall.domain.Yoil;
 import oncall.service.OncallService;
 import org.junit.jupiter.api.Test;
@@ -13,18 +13,18 @@ public class 온콜서비스테스트 {
 
     private final OncallService oncallService=new OncallService();
     private static final int startMonth=5;
-    private static final String startYoil="토";
-    private final List<String> week = new ArrayList<>(List.of("가", "나", "다", "라", "마", "바", "사"));
-    private final List<String> off = new ArrayList<>(List.of("a", "b", "c", "d", "e", "f", "g"));
-    private final Yoil yoil=new Yoil(List.of("월", "화", "수", "목", "금", "토", "일"));
+    private static final String startYoil="월";
+    private final Worker week=new Worker(new ArrayList<>(List.of("갑","을","병","정","무","기","경","신","임","계")));
+    private final Worker off=new Worker(new ArrayList<>(List.of("정","무","기","경","신","임","계","갑","을","병")));
 
     @Test
     void 온콜서비스테스트(){
-        Weekday weekday=new Weekday(week);
-        DayOff dayOff=new DayOff(off);
-//        List<String> yoils=yoil.getYoil();
+        List<WorkDay> result=oncallService.assign(startMonth,startYoil,week,off);
 
-        System.out.println(oncallService.oncall(startMonth, startYoil, yoil, weekday, dayOff).getWeekdayTurn());
-        System.out.println(oncallService.oncall(startMonth, startYoil, yoil, weekday, dayOff).getDayOffTurn());
+        for (WorkDay day : result) {
+            System.out.println(day.getMonth()+"월 "+day.getDay()+"일 "+day.getYoil().getYoilName()+" "+day.getNickname());
+        }
+
+
     }
 }
