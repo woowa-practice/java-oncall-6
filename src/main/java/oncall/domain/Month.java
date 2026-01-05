@@ -5,28 +5,28 @@ import java.util.Collections;
 import java.util.List;
 
 public enum Month {
-    JAN(1, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    FEB(2, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28)),
-    APL(3, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30)),
-    MAR(4, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    MAY(5, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    JUN(6, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30)),
-    JUL(7, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    AUG(8, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    SEP(9, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30)),
-    OCT(10, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31)),
-    NOV(11, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30)),
-    DEC(12, Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31));
+    JAN(1, 31),
+    FEB(2, 28),
+    MAR(4, 31),
+    APR(3, 30),
+    MAY(5, 31),
+    JUN(6, 30),
+    JUL(7, 31),
+    AUG(8, 31),
+    SEP(9, 30),
+    OCT(10, 31),
+    NOV(11, 30),
+    DEC(12, 31);
 
     private final int monthName;
-    private final List<Integer> days;
+    private final int maxDays;
 
-    Month(int monthName, List<Integer> days) {
+    Month(int monthName, int maxDays) {
         this.monthName = monthName;
-        this.days = days;
+        this.maxDays = maxDays;
     }
 
-    public static Month valueOf(int name) {
+    public static Month from(int name) {
         return Arrays.stream(values())
                 .filter(month -> month.monthName == name)
                 .findFirst()
@@ -37,7 +37,7 @@ public enum Month {
         return monthName;
     }
 
-    public List<Integer> getDays() {
-        return Collections.unmodifiableList(days);
+    public int getMaxDays(){
+        return maxDays;
     }
 }
