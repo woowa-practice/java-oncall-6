@@ -1,9 +1,6 @@
 package oncall.domain;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
 
 public enum Yoil {
     MON("월", 0),
